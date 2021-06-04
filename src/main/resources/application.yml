@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: ffr-aggregator
+server:
+  port: ${DISCOVERED_SERVICE_PORT:8080}
+logging:
+  level:
+    root: INFO
+app:
+  api:
+    endpoint:
+      product:
+        retrieve_by_id: /v1/product/{id}
+        create_product: /v1/product
