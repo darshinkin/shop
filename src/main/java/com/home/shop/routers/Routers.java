@@ -1,12 +1,17 @@
-package com.home.shop.shop.routers;
+package com.home.shop.routers;
 
-import com.home.shop.shop.handlers.ProductHandlers;
+import com.home.shop.config.ProductConfig;
+import com.home.shop.handlers.ProductHandlers;
+import com.home.shop.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.reactive.function.server.*;
 
 @Configuration
+@Import(value = {ProductConfig.class})
 public class Routers {
 
     @Value("${app.api.endpoint.product.retrieve_by_id}")
@@ -14,6 +19,9 @@ public class Routers {
 
     @Value("${app.api.endpoint.product.create_product}")
     private String uriCreateProduct;
+
+    @Autowired
+    private ProductService productService;
 
     @Bean
     public RouterFunction<ServerResponse> productRouter() {
@@ -23,11 +31,11 @@ public class Routers {
                 .POST(this.uriCreateProduct);
         return RouterFunctions
                 .route(getProduct, productHandlers()::getProductById)
-                .andRoute(createProduct, productHandlers()::getProductById);
+                .andRoute(createProduct, productHandlers()::createProduct);
     }
 
     @Bean
     public ProductHandlers productHandlers() {
-        return new ProductHandlers();
+        return new ProductHandlers(productService);
     }
 }
