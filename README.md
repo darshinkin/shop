@@ -4,11 +4,13 @@ Online shop in cloud.
 ### REST API
 
 * Retrieve product by ID
-> GET /v1/product/{id} 
+> GET /v1/product/{id} <br/>
+> *Example:* <br/>
 > curl -v http://localhost:8082/v1/product/1
 
 * Create product
-> POST /v1/product
+> POST /v1/product <br/>
+> *Example:* <br/>
 > curl -v -H "Content-Type: application/json" -X POST http://localhost:8082/v1/product -d "{\"productName\":\"car\"}"
 
 ### DOCKER
