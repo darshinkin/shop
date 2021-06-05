@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.home.shop'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '13'
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
@@ -32,4 +32,8 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+bootBuildImage {
+	imageName = "com.home.shop/shop-origin/develop:latest"
 }
