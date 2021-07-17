@@ -16,11 +16,6 @@ pipeline {
             }
         }
         stage('Test') {
-            when {
-                expression {
-                    BRANCH_NAME = 'main' || BRANCH_NAME = 'dev'
-                }
-            }
             steps {
                 echo 'Test stage!'
                 sh "./gradlew test"
