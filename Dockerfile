@@ -1,5 +1,5 @@
 FROM openjdk:13-jdk-alpine
-ARG JAR_FILE=build/libs/*.jar
+ARG JAR_FILE=build/libs/shop-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar app.jar"]
 
