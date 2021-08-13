@@ -24,10 +24,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'com.amazonaws:aws-java-sdk-dynamodb'
+
 	compileOnly 'org.projectlombok:lombok'
-	implementation 'com.amazonaws:aws-xray-recorder-sdk-core'
-	implementation 'com.amazonaws:aws-xray-recorder-sdk-aws-sdk'
-	implementation 'com.amazonaws:aws-xray-recorder-sdk-aws-sdk-instrumentor'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'io.r2dbc:r2dbc-h2'
 	annotationProcessor 'org.projectlombok:lombok'

@@ -2,6 +2,7 @@ package com.home.shop.handlers;
 
 import com.home.shop.persistence.models.Product;
 import com.home.shop.routers.models.ProductCreateRequest;
+import com.home.shop.routers.models.ProductResponse;
 import com.home.shop.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -17,7 +18,7 @@ public class ProductHandlers {
 
     public Mono<ServerResponse> getProductById(ServerRequest serverRequest) {
         String productId = serverRequest.pathVariable(PATH_VARIABLE_ID);
-        Mono<Product> productMono = productService.retrieveProductById(Long.parseLong(productId));
+        Mono<ProductResponse> productMono = productService.retrieveProductById(Long.parseLong(productId));
         return ServerResponse
                 .ok()
                 .contentType(MediaType.APPLICATION_JSON)
@@ -28,13 +29,11 @@ public class ProductHandlers {
     public Mono<ServerResponse> createProduct(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(ProductCreateRequest.class)
                 .flatMap(productCreateRequest -> {
-                    Mono<Product> productMono = productService.save(Product.builder()
-                            .productName(productCreateRequest.getProductName())
-                            .build());
+                    Mono<ProductResponse> productMono = productService.save(productCreateRequest);
                     return ServerResponse
                             .ok()
                             .contentType(MediaType.APPLICATION_JSON)
-                            .body(productMono, Product.class);
+                            .body(productMono, ProductResponse.class);
                 });
     }
 }
