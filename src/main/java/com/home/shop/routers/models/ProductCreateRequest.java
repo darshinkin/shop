@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductCreateRequest {
 
+    private Long productArticle;
     private String productName;
 }

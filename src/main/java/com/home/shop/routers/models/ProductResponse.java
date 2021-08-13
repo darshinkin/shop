@@ -7,6 +7,6 @@ import lombok.Data;
 @Builder
 public class ProductResponse {
 
-    private long id;
+    private Long productArticle;
     private String productName;
 }

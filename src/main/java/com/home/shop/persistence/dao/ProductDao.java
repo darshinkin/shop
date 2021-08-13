@@ -1,10 +1,13 @@
 package com.home.shop.persistence.dao;
 
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedQueryList;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.home.shop.persistence.models.Product;
 import com.home.shop.persistence.repositories.ProductRepository;
 import com.home.shop.routers.models.ProductCreateRequest;
@@ -22,13 +25,16 @@ public class ProductDao {
         return productRepository.findById(productId);
     }
 
-    public Mono<com.home.shop.persistence.models.dynamodb.Product> retrieveProductByIDynamoDB(long productId) {
-        DynamoDBQueryExpression<com.home.shop.persistence.models.dynamodb.Product> dynamoDBQueryExpression =
-                new DynamoDBQueryExpression<com.home.shop.persistence.models.dynamodb.Product>()
-                        .withHashKeyValues(com.home.shop.persistence.models.dynamodb.Product.builder().id(productId).build());
-        PaginatedQueryList<com.home.shop.persistence.models.dynamodb.Product> products =
-                dynamoDBMapper.query(com.home.shop.persistence.models.dynamodb.Product.class, dynamoDBQueryExpression);
-        return Mono.just(Objects.requireNonNull(products.stream().findFirst().orElse(null)));
+    public Mono<com.home.shop.persistence.models.dynamodb.Product> retrieveProductByIDynamoDB(long productArticle) {
+        Map<String, AttributeValue> eav = new HashMap<>();
+        eav.put(":article", new AttributeValue().withN(String.valueOf(productArticle)));
+        DynamoDBScanExpression dynamoDBQueryExpression = new DynamoDBScanExpression()
+                .withFilterExpression("productArticle = :article")
+                .withExpressionAttributeValues(eav);
+        List<com.home.shop.persistence.models.dynamodb.Product> products =
+                dynamoDBMapper.scan(com.home.shop.persistence.models.dynamodb.Product.class, dynamoDBQueryExpression);
+        Optional<com.home.shop.persistence.models.dynamodb.Product> product = products.stream().findFirst();
+        return product.map(Mono::just).orElseGet(Mono::empty);
     }
 
     public Mono<Product> save(Product product) {
@@ -37,7 +43,8 @@ public class ProductDao {
 
     public void saveDynamoDb(ProductCreateRequest productRequest) {
         dynamoDBMapper.save(com.home.shop.persistence.models.dynamodb.Product.builder()
-                        .productName(productRequest.getProductName())
+                .article(productRequest.getProductArticle())
+                .productName(productRequest.getProductName())
                 .build());
     }
 }

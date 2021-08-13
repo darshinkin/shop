@@ -17,8 +17,8 @@ public class ProductHandlers {
     private final ProductService productService;
 
     public Mono<ServerResponse> getProductById(ServerRequest serverRequest) {
-        String productId = serverRequest.pathVariable(PATH_VARIABLE_ID);
-        Mono<ProductResponse> productMono = productService.retrieveProductById(Long.parseLong(productId));
+        String productArticle = serverRequest.pathVariable(PATH_VARIABLE_ID);
+        Mono<ProductResponse> productMono = productService.retrieveProductByArticle(Long.parseLong(productArticle));
         return ServerResponse
                 .ok()
                 .contentType(MediaType.APPLICATION_JSON)

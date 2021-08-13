@@ -12,15 +12,15 @@ public class ProductService {
 
     private final ProductDao productDao;
 
-    public Mono<ProductResponse> retrieveProductById(long productId) {
-        return productDao.retrieveProductByIDynamoDB(productId).map(product -> ProductResponse.builder()
-                .id(product.getId())
+    public Mono<ProductResponse> retrieveProductByArticle(long productArticle) {
+        return productDao.retrieveProductByIDynamoDB(productArticle).map(product -> ProductResponse.builder()
+                .productArticle(product.getArticle())
                 .productName(product.getProductName())
                 .build());
     }
 
     public Mono<ProductResponse> save(ProductCreateRequest productRequest) {
         productDao.saveDynamoDb(productRequest);
-        return Mono.just(ProductResponse.builder().productName(productRequest.getProductName()).build());
+        return Mono.just(ProductResponse.builder().productArticle(productRequest.getProductArticle()).productName(productRequest.getProductName()).build());
     }
 }
