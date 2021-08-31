@@ -1,4 +1,4 @@
-# shop
+# product-service
 Online shop in cloud.
 
 ### REST API
