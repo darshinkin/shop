@@ -1,0 +1,27 @@
+package com.shop.cartservice.persistence.models;
+
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "cart")
+@Data
+@NoArgsConstructor
+public class Cart {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long cartId;
+
+    @OneToMany(mappedBy = "cart")
+    private Set<Product> products;
+}
