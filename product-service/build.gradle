@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.home.shop'
+group = 'com.shop.product-service'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -38,7 +38,7 @@ test {
 }
 
 bootBuildImage {
-	imageName = "com.home.shop/shop-origin/develop:latest"
+	imageName = "com.shop/product-origin/develop:latest"
 }
 
 dependencyManagement {

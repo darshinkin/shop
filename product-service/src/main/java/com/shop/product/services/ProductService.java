@@ -1,8 +1,8 @@
-package com.home.shop.services;
+package com.shop.product.services;
 
-import com.home.shop.persistence.dao.ProductDao;
-import com.home.shop.routers.models.ProductCreateRequest;
-import com.home.shop.routers.models.ProductResponse;
+import com.shop.product.persistence.dao.ProductDao;
+import com.shop.product.routers.models.ProductCreateRequest;
+import com.shop.product.routers.models.ProductResponse;
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;

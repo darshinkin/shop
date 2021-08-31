@@ -1,4 +1,4 @@
-package com.home.shop.routers.models;
+package com.shop.product.routers.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

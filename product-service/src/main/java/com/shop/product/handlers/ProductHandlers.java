@@ -1,9 +1,10 @@
-package com.home.shop.handlers;
+package com.shop.product.handlers;
 
-import com.home.shop.persistence.models.Product;
-import com.home.shop.routers.models.ProductCreateRequest;
-import com.home.shop.routers.models.ProductResponse;
-import com.home.shop.services.ProductService;
+import com.shop.product.persistence.models.Product;
+import com.shop.product.routers.models.ProductCreateRequest;
+import com.shop.product.routers.models.ProductResponse;
+import com.shop.product.services.ProductService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.ServerRequest;

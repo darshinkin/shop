@@ -1,4 +1,4 @@
-package com.home.shop.config;
+package com.shop.product.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -8,9 +8,9 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.home.shop.persistence.dao.ProductDao;
-import com.home.shop.persistence.repositories.ProductRepository;
-import com.home.shop.services.ProductService;
+import com.shop.product.persistence.dao.ProductDao;
+import com.shop.product.persistence.repositories.ProductRepository;
+import com.shop.product.services.ProductService;
 
 @Configuration
 public class ProductConfig {

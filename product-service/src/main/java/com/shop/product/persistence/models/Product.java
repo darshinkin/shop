@@ -1,4 +1,4 @@
-package com.home.shop.persistence.models;
+package com.shop.product.persistence.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

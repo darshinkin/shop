@@ -1,7 +1,8 @@
-package com.home.shop.persistence.repositories;
+package com.shop.product.persistence.repositories;
 
 
-import com.home.shop.persistence.models.Product;
+import com.shop.product.persistence.models.Product;
+
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import org.springframework.stereotype.Repository;
 

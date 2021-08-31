@@ -28,7 +28,7 @@ pipeline {
         stage('Publish to dockerhub.com') {
             steps {
                 echo 'Publish stage!'
-                sh "docker push arshinkinda/shop-origin:latest"
+                sh "docker push arshinkinda/product-origin:latest"
             }
         }
         stage('Deploy to k8s') {

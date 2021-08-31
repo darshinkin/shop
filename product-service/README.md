@@ -1,5 +1,5 @@
 # product-service
-Online shop in cloud.
+Product service for online shop in cloud.
 
 ### REST API
 
@@ -16,10 +16,10 @@ Online shop in cloud.
 ### DOCKER
 
 * Build image
-> docker build --build-arg JAR_FILE=build/libs/\*.jar -t com.home.shop/shop-origin/develop:latest .
+> docker build --build-arg JAR_FILE=build/libs/\*.jar -t com.shop.product/product-origin/develop:latest .
 
 * Run container
-> docker run --rm -it -d -p 8082:8082 --name shop arshinkinda/shop-origin:latest
+> docker run --rm -it -d -p 8082:8082 --name product arshinkinda/product-origin:latest
 
 > with JAVA_OPTS: <br/>
-> docker run --rm -it -e JAVA_OPTS="-Dlogging.level.root=TRACE" -p 8082:8082 --name shop com.home.shop/shop-origin/develop:latest
+> docker run --rm -it -e JAVA_OPTS="-Dlogging.level.root=TRACE" -p 8082:8082 --name product com.shop.product/product-origin/develop:latest

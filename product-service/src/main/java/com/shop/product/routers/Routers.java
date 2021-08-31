@@ -1,8 +1,8 @@
-package com.home.shop.routers;
+package com.shop.product.routers;
 
-import com.home.shop.config.ProductConfig;
-import com.home.shop.handlers.ProductHandlers;
-import com.home.shop.services.ProductService;
+import com.shop.product.config.ProductConfig;
+import com.shop.product.handlers.ProductHandlers;
+import com.shop.product.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
