@@ -9,13 +9,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "product")
-@Data
+@Builder
+@Setter
+@Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
     @Id
@@ -28,4 +34,5 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "cartId", nullable = false)
     private Cart cart;
+
 }

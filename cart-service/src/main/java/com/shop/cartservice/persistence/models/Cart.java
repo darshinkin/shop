@@ -9,13 +9,19 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "cart")
-@Data
+@Builder
+@Setter
+@Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Cart {
 
     @Id
@@ -24,4 +30,5 @@ public class Cart {
 
     @OneToMany(mappedBy = "cart")
     private Set<Product> products;
+
 }
