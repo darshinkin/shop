@@ -1,5 +1,7 @@
 package com.shop.cartservice.persistence.dao;
 
+import java.util.Optional;
+
 import com.shop.cartservice.persistence.models.Cart;
 import com.shop.cartservice.persistence.repositories.CartRepository;
 import com.shop.cartservice.persistence.repositories.ProductRepository;
@@ -16,6 +18,10 @@ public class CartDao {
 
     public Cart getCartById(long cartId) {
         return cartRepository.findByCartId(cartId);
+    }
+
+    public Cart saveCart(Cart cart) {
+        return cartRepository.saveAndFlush(cart);
     }
 
     public Cart createCart() {

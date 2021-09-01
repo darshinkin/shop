@@ -28,3 +28,11 @@ app:
           byCartId: /v1/cart/{cartId}
         update:
           putDefaultProducts: /v1/cart/populate/{cartId}
+cart:
+  default:
+    products:
+      - apple
+      - pear
+      - orange
+      - TV-set
+
