@@ -21,7 +21,8 @@ public class CartService {
     }
 
     public Optional<Long> deleteCart(long cartId) {
-        return Optional.empty();
+        cartDao.deleteCartById(cartId);
+        return Optional.of(cartId);
     }
 
     public Optional<Cart> populateCartByDefaultProducts(long cartId) {

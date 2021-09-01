@@ -21,4 +21,8 @@ public class CartDao {
     public Cart createCart() {
         return cartRepository.save(Cart.builder().build());
     }
+
+    public void deleteCartById(long cartId) {
+        cartRepository.deleteById(cartId);
+    }
 }
