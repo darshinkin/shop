@@ -34,11 +34,13 @@ public class CartService {
         var maybeCart = cartDao.getCartById(cartId);
         return Optional.ofNullable(maybeCart).map(cart -> {
             Set<String> productNames = defaultCartProperties.getProducts();
-            Set<Product> products = productNames.stream().map(product -> Product.builder()
+            productNames.stream()
+                    .map(productName -> Product.builder()
+                            .productName(productName)
                             .cart(cart)
                             .build())
+                    .peek(cart::addProduct)
                     .collect(Collectors.toSet());
-            cart.getProducts().addAll(products);
             return cartDao.saveCart(cart);
         });
     }

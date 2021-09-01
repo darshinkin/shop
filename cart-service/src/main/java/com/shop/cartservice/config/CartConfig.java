@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.shop.cartservice.DefaultCartProperties;
 import com.shop.cartservice.persistence.dao.CartDao;
+import com.shop.cartservice.persistence.dao.ProductDao;
 import com.shop.cartservice.persistence.repositories.CartRepository;
 import com.shop.cartservice.persistence.repositories.ProductRepository;
 import com.shop.cartservice.services.CartService;
@@ -27,11 +28,16 @@ public class CartConfig {
 
     @Bean
     CartDao cartDao() {
-        return new CartDao(cartRepository, productRepository);
+        return new CartDao(cartRepository);
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "app.default.products")
+    ProductDao productDao() {
+        return new ProductDao(productRepository);
+    }
+
+    @Bean
+    @ConfigurationProperties(prefix = "cart.default")
     public DefaultCartProperties defaultCartProperties() {
         return new DefaultCartProperties();
     }

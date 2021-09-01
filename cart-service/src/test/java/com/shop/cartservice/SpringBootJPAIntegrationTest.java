@@ -28,13 +28,13 @@ public class SpringBootJPAIntegrationTest {
 
     @Test
     public void givenCartRepository_whenSaveAndRetreiveEntity_thenOK() {
-        Cart cart = Cart.builder().build();
+        Cart cart = new Cart();
+        Cart cartEntity = cartRepository.save(cart);
         Product p1 = Product.builder().productId(1L).productName("apple").cart(cart).build();
         Product p2 = Product.builder().productId(2L).productName("pear").cart(cart).build();
         Set<Product> products = Set.of(p1, p2);
-        cart.setProducts(products);
-        Cart cartEntity = cartRepository.saveAndFlush(cart);
         List<Product> savedProducts = productRepository.saveAllAndFlush(products);
+        cart.setProducts(Set.copyOf(savedProducts));
         Cart foundEntity = cartRepository.findByCartId(cartEntity.getCartId());
 
         assertNotNull(foundEntity);
@@ -49,6 +49,6 @@ public class SpringBootJPAIntegrationTest {
 
         assertNotNull(cart);
         assertNotNull(cart.getCartId());
-        assertNull(cart.getProducts());
+        assertThat(cart.getProducts()).hasSize(0);
     }
 }

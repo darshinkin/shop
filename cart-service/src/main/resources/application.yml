@@ -2,14 +2,14 @@ spring:
   application:
     name: cart
   datasource:
-    url: ${DB_URI}
+    url: ${DB_URI:jdbc:postgresql://localhost:5432/shop_cart}
     driverClassName: ${DB_DRIVER:org.postgresql.Driver}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    username: ${DB_USERNAME:rws_postgres}
+    password: ${DB_PASSWORD:!rws_postgres!}
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         dialect: ${DB_DIALECT:org.hibernate.dialect.PostgreSQLDialect}
