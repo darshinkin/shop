@@ -8,8 +8,6 @@ spring:
     password: ${DB_PASSWORD}
   jpa:
     show-sql: true
-#    use_sql_comments: true
-#    format_sql: true
     hibernate:
       ddl-auto: create-drop
     properties:
@@ -20,3 +18,13 @@ server:
 logging:
   level:
     root: INFO
+app:
+  api:
+    endpoint:
+      cart:
+        retrieve:
+          byCartId: /v1/cart/{cartId}
+        delete:
+          byCartId: /v1/cart/{cartId}
+        update:
+          putDefaultProducts: /v1/cart/populate/{cartId}

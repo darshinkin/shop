@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.shop.cartservice.persistence.dao.CartDao;
 import com.shop.cartservice.persistence.models.Cart;
 import com.shop.cartservice.persistence.models.Product;
 import com.shop.cartservice.persistence.repositories.CartRepository;
@@ -18,6 +19,8 @@ import com.shop.cartservice.persistence.repositories.ProductRepository;
 @SpringBootTest
 public class SpringBootJPAIntegrationTest {
 
+    @Autowired
+    private CartDao cartDao;
     @Autowired
     private CartRepository cartRepository;
     @Autowired
@@ -38,5 +41,14 @@ public class SpringBootJPAIntegrationTest {
         assertEquals(cartEntity.getCartId(), foundEntity.getCartId());
         assertThat(savedProducts).hasSameSizeAs(products);
         assertThat(cartEntity.getProducts()).hasSameSizeAs(foundEntity.getProducts());
+    }
+
+    @Test
+    public void whenCreateCart_thenReturnNewCart() {
+        Cart cart = cartDao.createCart();
+
+        assertNotNull(cart);
+        assertNotNull(cart.getCartId());
+        assertNull(cart.getProducts());
     }
 }

@@ -14,7 +14,7 @@ Cart service for online shop in cloud.
 > curl -X DELETE http://localhost:8083/v1/cart/1
 
 * Put a default product to the cart.
-> POST /v1/cart/ <br/>
+> POST /v1/cart/populate/{id} <br/>
 > *Example* <br/>
 > curl  -v -H "Content-Type: application/json" -X POST http://localhost:8083/v1/cart -d "{\"productName\":\"car\"}"
 
