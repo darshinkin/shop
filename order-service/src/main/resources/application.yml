@@ -10,7 +10,7 @@ app:
   api:
     endpoint:
       order:
-        checkout: /v1/order
+        checkout: /v1/order/checkout
   aws:
     region: us-east-1
-    queueName: demoQueue
+    queueName: DemoQueue
