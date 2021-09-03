@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  cart:
+    image: arshinkinda/cart-origin
+    container_name: cart
+    restart: unless-stopped
+    ports:
+      - 8083:8083
+      - 5432:5432
+    environment:
+      DB_URI: jdbc:postgresql://cart.c5qz0zmver3m.us-east-1.rds.amazonaws.com:5432/cart
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      AWS_XRAY_DAEMON_ADDRESS: xray:2000
+  xray:
+    image: amazon/aws-xray-daemon
+    container_name: xray
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
