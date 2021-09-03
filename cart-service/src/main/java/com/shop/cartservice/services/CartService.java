@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.shop.cartservice.DefaultCartProperties;
+import com.shop.cartservice.properties.DefaultCartProperties;
 import com.shop.cartservice.persistence.dao.CartDao;
 import com.shop.cartservice.persistence.models.Cart;
 import com.shop.cartservice.persistence.models.Product;

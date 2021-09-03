@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: order
+server:
+  port: ${DISCOVERED_SERVICE_PORT:8084}
+logging:
+  level:
+    root: INFO
+app:
+  api:
+    endpoint:
+      order:
+        checkout: /v1/order

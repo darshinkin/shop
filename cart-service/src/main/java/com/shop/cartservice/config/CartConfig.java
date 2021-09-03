@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.shop.cartservice.DefaultCartProperties;
+import com.shop.cartservice.properties.DefaultCartProperties;
 import com.shop.cartservice.persistence.dao.CartDao;
 import com.shop.cartservice.persistence.dao.ProductDao;
 import com.shop.cartservice.persistence.repositories.CartRepository;

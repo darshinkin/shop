@@ -1,4 +1,4 @@
-package com.shop.cartservice;
+package com.shop.cartservice.properties;
 
 import java.util.Set;
 
