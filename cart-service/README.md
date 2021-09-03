@@ -16,15 +16,15 @@ Cart service for online shop in cloud.
 * Put a default product to the cart.
 > POST /v1/cart/populate/{id} <br/>
 > *Example* <br/>
-> curl  -v -H "Content-Type: application/json" -X POST http://localhost:8083/v1/cart -d "{\"productName\":\"car\"}"
+> curl  -v -H "Content-Type: application/json" -X POST http://localhost:8083/v1/cart/1
 
 ### DOCKER
 
 * Build image
-> docker build --build-arg JAR_FILE=build/libs/\*.jar -t com.shop.cart/cart-origin/develop:latest .
+> docker build -t arshinkinda/cart-origin .
 
 * Run container
 > docker run --rm -it -d -p 8083:8083 --name cart arshinkinda/cart-origin:latest
 
 > with JAVA_OPTS: <br/>
-> docker run --rm -it -e JAVA_OPTS="-Dlogging.level.root=TRACE" -p 8083:8083 --name cart com.shop.cart/cart-origin/develop:latest
+> docker run --rm -it -e JAVA_OPTS="-Dlogging.level.root=INFO" -p 8083:8083 --name cart arshinkinda/cart-origin:latest
