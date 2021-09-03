@@ -13,7 +13,9 @@ import javax.servlet.ServletContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -32,6 +34,10 @@ import com.shop.orderservice.controllers.dto.CartRequest;
 import com.shop.orderservice.domain.Cart;
 import com.shop.orderservice.domain.Product;
 
+import software.amazon.awssdk.services.sqs.SqsClient;
+import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
+import software.amazon.awssdk.services.sqs.model.SendMessageResponse;
+
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { OrderServiceApplication.class })
 @WebAppConfiguration
@@ -41,6 +47,12 @@ public class OrderControllerTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
+
+    @MockBean
+    private SqsClient sqsClient;
+
+    @MockBean
+    private SendMessageRequest.Builder sendMessageRequestBuilder;
 
     private MockMvc mockMvc;
 
@@ -78,6 +90,9 @@ public class OrderControllerTest {
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
         String requestJson=ow.writeValueAsString(cartRequest);
+
+        Mockito.when(sendMessageRequestBuilder.messageBody(Mockito.anyString())).thenReturn(SendMessageRequest.builder());
+        Mockito.when(sqsClient.sendMessage(Mockito.any(SendMessageRequest.class))).thenReturn(SendMessageResponse.builder().messageId("1").build());
 
         this.mockMvc.perform(post("/v1/order")
                         .contentType(APPLICATION_JSON_UTF8)
