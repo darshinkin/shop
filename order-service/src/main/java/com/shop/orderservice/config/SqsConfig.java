@@ -6,12 +6,14 @@ import org.springframework.context.annotation.Configuration;
 
 import com.shop.orderservice.properties.AwsProperties;
 
+import lombok.extern.log4j.Log4j2;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.sqs.SqsClient;
 import software.amazon.awssdk.services.sqs.model.GetQueueUrlRequest;
 import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
 
 @Configuration
+@Log4j2
 public class SqsConfig {
 
     @Bean
@@ -22,22 +24,27 @@ public class SqsConfig {
 
     @Bean
     SqsClient sqlClient() {
+        String region = awsProperties().getRegion();
+        log.info("Setup AWS region: {}", region);
         return SqsClient.builder().region(Region.regions().stream()
-                        .filter(region -> region.id().equals(awsProperties().getRegion()))
+                        .filter(awsRegion -> awsRegion.id().equals(region))
                         .findFirst().orElseThrow())
                 .build();
     }
 
     @Bean
     GetQueueUrlRequest getQueueUrlRequest() {
+        String queueName = awsProperties().getQueueName();
+        log.info("Setup SQS queue: {}", queueName);
         return GetQueueUrlRequest.builder()
-                .queueName(awsProperties().getQueueName())
+                .queueName(queueName)
                 .build();
     }
 
     @Bean
     SendMessageRequest.Builder sendMessageRequestBuilder() {
         String queueUrl = sqlClient().getQueueUrl(getQueueUrlRequest()).queueUrl();
+        log.info("Setup SQS queue url: {}", queueUrl);
         return SendMessageRequest.builder().queueUrl(queueUrl);
     }
 }

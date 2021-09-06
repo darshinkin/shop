@@ -19,13 +19,16 @@ public class OrderService {
     private final SqsClient sqsClient;
 
     public Optional<Order> checkout(CartRequest cartRequest) {
+        log.traceEntry();
         SendMessageRequest sendMessageRequest = sendMessageRequestBuilder.messageBody(cartRequest.toString()).build();
+        log.info("SendMessageRequest has been created: {}", sendMessageRequest);
         SendMessageResponse sendMessageResponse = sqsClient.sendMessage(sendMessageRequest);
-        return Optional.ofNullable(sendMessageResponse.messageId())
+        log.info("Request hase been sent to SQS. Response: {}", sendMessageResponse);
+        return log.traceExit(Optional.ofNullable(sendMessageResponse.messageId())
                 .map(messageId -> Optional.of(Order.builder().orderId(sendMessageResponse.messageId()).build()))
                 .orElseGet(() -> {
                     log.error("Error occurred during sending message SQS. CartRequest: {}", cartRequest);
                     return Optional.empty();
-                });
+                }));
     }
 }
