@@ -1,0 +1,17 @@
+.idea
+.DS_store
+package-lock.json
+package
+*out.yml
+out.json
+bucket-name.txt
+target
+build
+.gradle
+*.zip
+bin
+obj
+Gemfile.lock
+lib
+__pycache__
+*.pyc
