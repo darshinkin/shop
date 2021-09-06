@@ -12,5 +12,5 @@ app:
       order:
         checkout: /v1/order/checkout
   aws:
-    region: us-east-1
-    queueName: DemoQueue
+    region: ${AWS_REGION:us-east-1}
+    queueName: ${AWS_SQS_QUEUE:DemoQueue}

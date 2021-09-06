@@ -12,6 +12,17 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
       AWS_XRAY_DAEMON_ADDRESS: xray:2000
+  order:
+    image: arshinkinda/order-origin
+    container_name: order
+    restart: unless-stopped
+    ports:
+      - 8084:8084
+    environment:
+      AWS_REGION: us-east-1
+      AWS_SQS_QUEUE: DemoQueue
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
   xray:
     image: amazon/aws-xray-daemon
     container_name: xray

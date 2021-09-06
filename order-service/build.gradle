@@ -35,3 +35,7 @@ dependencyManagement {
 test {
 	useJUnitPlatform()
 }
+
+bootBuildImage {
+	imageName = "arshinkinda/order-origin"
+}
