@@ -9,6 +9,7 @@ repositories {
 dependencies {
     implementation platform('software.amazon.awssdk:bom:2.10.73')
     implementation platform('com.amazonaws:aws-xray-recorder-sdk-bom:2.4.0')
+    implementation 'software.amazon.awssdk:sns'
     implementation 'software.amazon.awssdk:lambda'
     implementation 'com.amazonaws:aws-xray-recorder-sdk-core'
     implementation 'com.amazonaws:aws-xray-recorder-sdk-aws-sdk-core'

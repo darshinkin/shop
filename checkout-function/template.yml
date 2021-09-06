@@ -18,6 +18,8 @@ Resources:
         - AWSXrayWriteOnlyAccess
         - AWSLambdaVPCAccessExecutionRole
         - AWSLambdaSQSQueueExecutionRole
+        - AWSLambda_FullAccess
+        - AmazonSNSFullAccess
       Tracing: Active
       Layers:
         - !Ref libs
