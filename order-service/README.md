@@ -6,15 +6,15 @@ Order service for online shop in cloud.
 * Create order. It takes the shopping cart content as an argument.
 > POST /v1/order/checkout <br/>
 > *Example* <br/>
-> curl  -v -H "Content-Type: application/json" -X POST http://localhost:8084/v1/order -d "{
+> curl  -v -H "Content-Type: application/json" -X POST http://localhost:8084/v1/order/checkout -d "{
 >\"cart\" : {
 >\"cartId\" : 1,
 >\"products\" : [ {
->\"productId\" : 2,
->\"productName\" : \"pear\"
+>\\"productId\\" : 2,
+>\\"productName\\" : \\"pear\\"
 >}, {
->\"productId\" : 1,
->\"productName\" : \"apple\"
+>\\"productId\\" : 1,
+>\\"productName\\" : \\"apple\\"
 >} ]
 >}
 >}"

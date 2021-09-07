@@ -10,7 +10,7 @@ ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -jar app.jar"]
 
 #   Local run
 #    $ docker run --rm -it -p 8084:8084 --name order arshinkinda/order-origin:latest
-#    $ docker run --rm -it -e JAVA_OPTS="-Dlogging.level.root=INFO" -p 8084:8084 --name order arshinkinda/order-origin:latest
+#    $ docker run --rm -it -e JAVA_OPTS="-Dlogging.level.root=INFO -DAWS_REGION=us-east-1 -DAWS_SQS_QUEUE=DemoQueue -DAWS_ACCESS_KEY_ID=AKIAUQORHSFSRE3ZPSAW -DAWS_SECRET_ACCESS_KEY=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" -p 8084:8084 --name order arshinkinda/order-origin:latest
 
 #   Run on AWS
 #    $ docker run --rm -it -e JAVA_OPTS="-Dlogging.level.root=INFO" -p 8084:8084 --name order arshinkinda/order-origin:latest
