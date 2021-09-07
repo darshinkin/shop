@@ -33,6 +33,6 @@ services:
     environment:
       AWS_REGION: us-east-1
       AWS_SQS_QUEUE: OrderQueue
-      AWS_ACCESS_KEY_ID: AKIAUQORHSFSTCEZNM4E
-      AWS_SECRET_ACCESS_KEY: 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" > docker-compose.yml
+      AWS_ACCESS_KEY_ID: @{AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: @{AWS_SECRET_ACCESS_KEY}" > docker-compose.yml
 docker-compose up -d
