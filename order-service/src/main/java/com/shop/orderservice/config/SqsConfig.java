@@ -27,12 +27,14 @@ public class SqsConfig {
     @Bean
     SqsClient sqsClient() {
         String region = awsProperties().getRegion();
+        String endpointUri = awsProperties().getEndpointUri();
         log.info("Setup AWS region: {}", region);
+        log.info("Setup AWS endpoint: {}", endpointUri);
         return SqsClient.builder()
                 .region(Region.regions().stream()
                         .filter(awsRegion -> awsRegion.id().equals(region))
                         .findFirst().orElseThrow())
-                .endpointOverride(URI.create(awsProperties().getEndpointUri()))
+                .endpointOverride(URI.create(endpointUri))
                 .build();
     }
 
