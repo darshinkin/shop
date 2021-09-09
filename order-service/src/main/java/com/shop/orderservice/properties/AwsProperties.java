@@ -9,4 +9,5 @@ public class AwsProperties {
 
     private String region;
     private String queueName;
+    private String endpointUri;
 }

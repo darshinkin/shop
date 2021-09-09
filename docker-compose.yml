@@ -21,6 +21,7 @@ services:
     environment:
       AWS_REGION: us-east-1
       AWS_SQS_QUEUE: DemoQueue
+      AWS_ENDPOINT_URI: https://vpce-080b486b2bfb75c7f-9ai3n508.sqs.us-east-1.vpce.amazonaws.com
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
   xray:

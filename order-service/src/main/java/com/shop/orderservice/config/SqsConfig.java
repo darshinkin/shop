@@ -1,5 +1,7 @@
 package com.shop.orderservice.config;
 
+import java.net.URI;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,12 +25,14 @@ public class SqsConfig {
     }
 
     @Bean
-    SqsClient sqlClient() {
+    SqsClient sqsClient() {
         String region = awsProperties().getRegion();
         log.info("Setup AWS region: {}", region);
-        return SqsClient.builder().region(Region.regions().stream()
+        return SqsClient.builder()
+                .region(Region.regions().stream()
                         .filter(awsRegion -> awsRegion.id().equals(region))
                         .findFirst().orElseThrow())
+                .endpointOverride(URI.create(awsProperties().getEndpointUri()))
                 .build();
     }
 
@@ -43,7 +47,7 @@ public class SqsConfig {
 
     @Bean
     SendMessageRequest.Builder sendMessageRequestBuilder() {
-        String queueUrl = sqlClient().getQueueUrl(getQueueUrlRequest()).queueUrl();
+        String queueUrl = sqsClient().getQueueUrl(getQueueUrlRequest()).queueUrl();
         log.info("Setup SQS queue url: {}", queueUrl);
         return SendMessageRequest.builder().queueUrl(queueUrl);
     }
